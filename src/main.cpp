@@ -24,7 +24,17 @@ int main() {
   });
 
   root = CatchEvent(root, [&](Event e) {
-    return false;
+    if (e == Event::Character('1')) {
+      state.active_tab = 0; 
+      return true;
+    } else if (e == Event::Character('2')) {
+      state.active_tab = 1;
+      return true;
+    } else if (e == Event::Character('q')) {
+      screen.ExitLoopClosure()();
+      return true;
+    }
+    return true;
   });
 
   screen.Loop(root);
